@@ -58,18 +58,22 @@ Page({
   },
   numrun: function() {
     point.x = res.screenWidth / 2;//圆心X坐标
+    ctx.translate(point.x, point.y);//设置圆心
     for (var i = 0; i < arr.length; i++) { //计算总量
       total += arr[i];
     }
-    for(var i=0;i<arr.length;i++){//后续修改
+    for(var i=0;i<arr.length;i++){
       ctx.beginPath();//开启路径
-      starts = arr[i] / 50 * Math.PI / 2;
+      starts = arr[i] / total * Math.PI /0.5;
+      var m = arr[i] / total * 100 ;
       ctx.rotate(ends + starts);//旋转数值  
       ctx.font = "15px scans-serif";
-      ctx.fillStyle = "#000";
-      ctx.fillText(arr[i] / total * 100+ "%", point.x, point.y);
-      ends = arr[i] / 50 * Math.PI / 2;
+      ctx.fillStyle = "aqua";//设置字体颜色
+      console.log(m)
+      ctx.fillText(m.toFixed(2) + "%", 40, 10);//填充数字
+      ends = arr[i] / total * Math.PI / 0.5;
       ctx.closePath();//关闭当前路径  
+      
     }
     
   },
